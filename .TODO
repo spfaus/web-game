@@ -1,8 +1,8 @@
 Planning:
     Define personal goals / clarify and document idea:
-        ☐ What are my goals with this project? -> README
-        ☐ What is the finished project supposed to be? -> README
-        ☐ What difficulties do I expect to come across? -> README
+        ✔ What are my goals with this project? -> README @done(20-06-05 16:36)
+        ✔ What is the finished project supposed to be? -> README @done(20-06-05 16:45)
+        ✔ What difficulties do I expect to come across? -> README @done(20-06-05 16:36)
 
     Requirements document:
         ☐ Draft requirements document
@@ -17,7 +17,7 @@ Planning:
         ☐ Plan frontend UX / UI
         ☐ Plan execution (code)
 
-Implementation preperation:
+Meta:
     Tutorials:
         ☐ What helpful tutorials are out there? -> TODO
 
