@@ -5,8 +5,9 @@ Planning:
         ✔ What difficulties do I expect to come across? -> README @done(20-06-05 16:36)
 
     Requirements document:
-        ☐ Draft requirements document
-        ☐ Differentiate between must-haves and nice-to-haves
+        ✘ Draft requirements document @cancelled(20-06-05 17:15)
+        ✔ Differentiate between must-haves and nice-to-haves @done(20-06-05 17:12)
+        ☐ Add first tasks to Implementation/MVP section
 
     Technologies:
         ☐ What technologies do I expect to use? -> README
@@ -25,6 +26,29 @@ Meta:
     Tools:
         ☐ What helpful tools are out there? -> TODO
         ✔ Markdown previewer for vscode @done(20-06-05 16:57)
+        ☐ Check tooling on previous web projects
 
 Implementation:
+    MVP:
+        Registration / Login:
+            ☐ Registration / Login page
+            ☐ Registration / Login functionality
+
+        Gameplay:
+            ☐ Game screen
+            ☐ Menu section
+                ☐ Stats
+                ☐ Equipment
+                ☐ Items
+            ☐ Player Movement
+            ☐ "Village" environment
+            ☐ "Dungeon" environment
+            ☐ Basic combat
+            ☐ Basic trade
+
+    Additional features:
+        Registration / Login:
+            ☐ Request deletion / delete user functionality
     
+TODO archive:
+    Don't add new TODOs here. Only move finished or cancelled ones here.

@@ -9,7 +9,7 @@ If everything goes well, this might end up being a nice portfolio project for my
 ## Finished project
 The idea for the finished project is a browser-based game.  
 It is a turn-based rpg. The graphics are minimalistic and the environments are tile-based like classic roguelikes.  
-Player inputs are taken via the keyboard.  
+Player inputs are taken via the keyboard and possibly mouse.  
 In its most basic implementation it should have a peaceful environment (like a village) for stocking up on supplies and some sort of dungeon with enemies to explore for treasures and experience.  
 Sound is optional.
 
