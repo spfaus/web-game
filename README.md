@@ -16,3 +16,6 @@ Sound is optional.
 ## Expected difficulties
 I might have to redo big parts of the project or go through multiple prototypes as I am not sure how to cope with the increasing complexity (or how to keep the complexity low) as the project grows. This is to be expected, as I intend to expose myself to new ideas, technologies, and tools along the way, that hopefully make for a better development process and final product.  
 As I haven't done a lot of backend programming recently, I might struggle with the implementation of a lot of features which hopefully won't take the fun away and make for a good learning experience.  
+
+## Expected Technologies
+HTML (smarty), CSS (SASS, LESS), PHP, MySQL, NodeJS and a bunch of npm modules, git, vscode, Apache (Maybe Nginx), bash, Linux, ...

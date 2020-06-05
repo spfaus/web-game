@@ -7,26 +7,29 @@ Planning:
     Requirements document:
         ✘ Draft requirements document @cancelled(20-06-05 17:15)
         ✔ Differentiate between must-haves and nice-to-haves @done(20-06-05 17:12)
-        ☐ Add first tasks to Implementation/MVP section
+        ✔ Add first tasks to Implementation/MVP section @done(20-06-05 17:27)
 
     Technologies:
-        ☐ What technologies do I expect to use? -> README
-        ☐ What development environment will be suitable? -> TODO
+        ✔ What technologies do I expect to use? -> README @done(20-06-05 17:37)
+        ✔ What development environment will be suitable? -> TODO @done(20-06-05 17:42)
 
     Implementation planning:
-        ☐ Which development method / philosophy will I follow?
-        ☐ Plan frontend UX / UI
-        ☐ Plan execution (code)
+        ✔ Which development method / philosophy will I follow? @done(20-06-05 17:42)
+        ☐ Plan frontend UX / UI -> TODO
+        ☐ Plan execution (code) -> TODO
 
 Meta:
     Tutorials:
-        ☐ What helpful tutorials are out there? -> TODO
+        ☐ What helpful and relevant tutorials are out there? -> TODO
         ✔ Markdown basics @done(20-06-05 16:57)
 
     Tools:
-        ☐ What helpful tools are out there? -> TODO
+        ☐ What helpful and relevant tools are out there? -> TODO
         ✔ Markdown previewer for vscode @done(20-06-05 16:57)
         ☐ Check tooling on previous web projects
+
+    Other:
+        ☐ Set up local Apache server for development
 
 Implementation:
     MVP:
@@ -45,6 +48,9 @@ Implementation:
             ☐ "Dungeon" environment
             ☐ Basic combat
             ☐ Basic trade
+
+        Scripting:
+            ☐ Install script (database setup)
 
     Additional features:
         Registration / Login:
