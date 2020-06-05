@@ -20,9 +20,11 @@ Planning:
 Meta:
     Tutorials:
         ☐ What helpful tutorials are out there? -> TODO
+        ✔ Markdown basics @done(20-06-05 16:57)
 
     Tools:
         ☐ What helpful tools are out there? -> TODO
+        ✔ Markdown previewer for vscode @done(20-06-05 16:57)
 
 Implementation:
     
