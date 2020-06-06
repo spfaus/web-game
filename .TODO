@@ -29,7 +29,7 @@ Meta:
         ☐ Check tooling on previous web projects
 
     Other:
-        ☐ Set up local Apache server for development
+        ✔ Set up local Apache server for development @done(20-06-05 20:34)
 
 Implementation:
     MVP:
