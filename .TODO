@@ -15,8 +15,8 @@ Planning:
 
     Implementation planning:
         ✔ Which development method / philosophy will I follow? @done(20-06-05 17:42)
-        ☐ Plan frontend UX / UI -> TODO
-        ☐ Plan execution (code) -> TODO
+        ✔ Plan rough frontend UX / UI -> TODO @done(20-06-06 18:00)
+        ✘ Plan execution (code) -> TODO @cancelled(20-06-06 18:00)
 
 Meta:
     Tutorials:
