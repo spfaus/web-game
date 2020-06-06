@@ -1,35 +1,17 @@
-Planning:
-    Define personal goals / clarify and document idea:
-        ✔ What are my goals with this project? -> README @done(20-06-05 16:36)
-        ✔ What is the finished project supposed to be? -> README @done(20-06-05 16:45)
-        ✔ What difficulties do I expect to come across? -> README @done(20-06-05 16:36)
-
-    Requirements document:
-        ✘ Draft requirements document @cancelled(20-06-05 17:15)
-        ✔ Differentiate between must-haves and nice-to-haves @done(20-06-05 17:12)
-        ✔ Add first tasks to Implementation/MVP section @done(20-06-05 17:27)
-
-    Technologies:
-        ✔ What technologies do I expect to use? -> README @done(20-06-05 17:37)
-        ✔ What development environment will be suitable? -> TODO @done(20-06-05 17:42)
-
-    Implementation planning:
-        ✔ Which development method / philosophy will I follow? @done(20-06-05 17:42)
-        ✔ Plan rough frontend UX / UI -> TODO @done(20-06-06 18:00)
-        ✘ Plan execution (code) -> TODO @cancelled(20-06-06 18:00)
-
 Meta:
     Tutorials:
         ☐ What helpful and relevant tutorials are out there? -> TODO
-        ✔ Markdown basics @done(20-06-05 16:57)
 
     Tools:
         ☐ What helpful and relevant tools are out there? -> TODO
-        ✔ Markdown previewer for vscode @done(20-06-05 16:57)
         ☐ Check tooling on previous web projects
 
-    Other:
-        ✔ Set up local Apache server for development @done(20-06-05 20:34)
+    Workflow:
+        ✔ Set up NodeJS @done(20-06-06 19:07)
+        ✔ Set up npm @done(20-06-06 19:07)
+        ☐ Set up Sass
+        ☐ Set up Gulp
+        ☐ Install script dev (database setup, dependencies installation)
 
 Implementation:
     MVP:
@@ -49,12 +31,23 @@ Implementation:
             ☐ Basic combat
             ☐ Basic trade
 
-        Scripting:
-            ☐ Install script (database setup)
-
     Additional features:
         Registration / Login:
             ☐ Request deletion / delete user functionality
     
 TODO archive:
     Don't add new TODOs here. Only move finished or cancelled ones here.
+    ✔ What are my goals with this project? -> README @done(20-06-05 16:36)
+    ✔ What is the finished project supposed to be? -> README @done(20-06-05 16:45)
+    ✔ What difficulties do I expect to come across? -> README @done(20-06-05 16:36)
+    ✘ Draft requirements document @cancelled(20-06-05 17:15)
+    ✔ Differentiate between must-haves and nice-to-haves @done(20-06-05 17:12)
+    ✔ Add first tasks to Implementation/MVP section @done(20-06-05 17:27)
+    ✔ What technologies do I expect to use? -> README @done(20-06-05 17:37)
+    ✔ What development environment will be suitable? -> TODO @done(20-06-05 17:42)
+    ✔ Which development method / philosophy will I follow? @done(20-06-05 17:42)
+    ✔ Plan rough frontend UX / UI -> TODO @done(20-06-06 18:00)
+    ✘ Plan execution (code) -> TODO @cancelled(20-06-06 18:00)
+    ✔ Markdown basics @done(20-06-05 16:57)
+    ✔ Markdown previewer for vscode @done(20-06-05 16:57)
+    ✔ Set up local Apache server for development @done(20-06-05 20:34)
