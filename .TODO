@@ -8,9 +8,9 @@ Meta:
 
     Workflow:
         ✔ Set up NodeJS @done(20-06-06 19:07)
-        ✔ Set up npm @done(20-06-06 19:07)
-        ☐ Set up Sass
-        ☐ Set up Gulp
+        ✔ Set up npm @done(20-06-07 21:43)
+        ✔ Set up Sass @done(20-06-07 21:45)
+        ✔ Set up Gulp @done(20-06-07 21:45)
         ☐ Install script dev (database setup, dependencies installation)
 
 Implementation:
