@@ -1,4 +1,3 @@
 - nodejs
 - npm
-- sass
-- gulp
+- vue-cli

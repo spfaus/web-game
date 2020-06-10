@@ -1,25 +1,9 @@
-Meta:
-    Tutorials:
-        ☐ What helpful and relevant tutorials are out there? -> TODO
-
-    Tools:
-        ☐ What helpful and relevant tools are out there? -> TODO
-        ☐ Check tooling on previous web projects
-
-    Workflow:
-        ✔ Set up NodeJS @done(20-06-06 19:07)
-        ✔ Set up npm @done(20-06-07 21:43)
-        ✔ Set up Sass @done(20-06-07 21:45)
-        ✔ Set up Gulp @done(20-06-07 21:45)
-        ☐ Install script dev (database setup, dependencies installation)
-
 Implementation:
-    MVP:
-        Registration / Login:
+            ☐ Set up vue 'Hello, world!'
+            ☐ Learn basics of vue
+
             ☐ Registration / Login page
             ☐ Registration / Login functionality
-
-        Gameplay:
             ☐ Game screen
             ☐ Menu section
                 ☐ Stats
@@ -30,9 +14,6 @@ Implementation:
             ☐ "Dungeon" environment
             ☐ Basic combat
             ☐ Basic trade
-
-    Additional features:
-        Registration / Login:
             ☐ Request deletion / delete user functionality
     
 TODO archive:
@@ -51,3 +32,7 @@ TODO archive:
     ✔ Markdown basics @done(20-06-05 16:57)
     ✔ Markdown previewer for vscode @done(20-06-05 16:57)
     ✔ Set up local Apache server for development @done(20-06-05 20:34)
+    ✔ Set up NodeJS @done(20-06-06 19:07)
+    ✔ Set up npm @done(20-06-07 21:43)
+    ✔ Set up Sass @done(20-06-07 21:45)
+    ✔ Set up Gulp @done(20-06-07 21:45)

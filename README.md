@@ -19,3 +19,26 @@ As I haven't done a lot of backend programming recently, I might struggle with t
 
 ## Expected Technologies
 HTML (smarty), CSS (SASS, LESS), PHP, MySQL, NodeJS and a bunch of npm modules, git, vscode, Apache (Maybe Nginx), bash, Linux, ...
+
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
