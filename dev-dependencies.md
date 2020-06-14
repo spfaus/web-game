@@ -1,4 +1,0 @@
-- nodejs
-- npm
-- sass
-- gulp
