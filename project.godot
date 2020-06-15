@@ -16,7 +16,14 @@ _global_script_class_icons={
 [application]
 
 config/name="web-game"
-config/icon="res://icon.png"
+run/main_scene="res://Game.tscn"
+config/icon="res://player.png"
+
+[display]
+
+window/size/width=640
+window/size/height=360
+window/stretch/mode="viewport"
 
 [rendering]
 
