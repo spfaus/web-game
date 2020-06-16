@@ -1,15 +1,15 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
-[ext_resource path="res://door.png" type="Texture" id=2]
-[ext_resource path="res://ground.png" type="Texture" id=3]
-[ext_resource path="res://ladder.png" type="Texture" id=4]
-[ext_resource path="res://stone.png" type="Texture" id=5]
-[ext_resource path="res://wall.png" type="Texture" id=6]
+[ext_resource path="res://stone.png" type="Texture" id=2]
+[ext_resource path="res://floor.png" type="Texture" id=3]
+[ext_resource path="res://wall.png" type="Texture" id=4]
+[ext_resource path="res://door.png" type="Texture" id=5]
+[ext_resource path="res://ladder.png" type="Texture" id=6]
 [ext_resource path="res://player.png" type="Texture" id=7]
 
 [sub_resource type="TileSet" id=1]
-0/name = "door.png 0"
+0/name = "stone.png 0"
 0/texture = ExtResource( 2 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
@@ -19,7 +19,7 @@
 0/navigation_offset = Vector2( 0, 0 )
 0/shapes = [  ]
 0/z_index = 0
-1/name = "ground.png 1"
+1/name = "floor.png 1"
 1/texture = ExtResource( 3 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
@@ -29,7 +29,7 @@
 1/navigation_offset = Vector2( 0, 0 )
 1/shapes = [  ]
 1/z_index = 0
-2/name = "ladder.png 2"
+2/name = "wall.png 2"
 2/texture = ExtResource( 4 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
@@ -39,7 +39,7 @@
 2/navigation_offset = Vector2( 0, 0 )
 2/shapes = [  ]
 2/z_index = 0
-3/name = "stone.png 3"
+3/name = "door.png 3"
 3/texture = ExtResource( 5 )
 3/tex_offset = Vector2( 0, 0 )
 3/modulate = Color( 1, 1, 1, 1 )
@@ -49,7 +49,7 @@
 3/navigation_offset = Vector2( 0, 0 )
 3/shapes = [  ]
 3/z_index = 0
-4/name = "wall.png 4"
+4/name = "ladder.png 4"
 4/texture = ExtResource( 6 )
 4/tex_offset = Vector2( 0, 0 )
 4/modulate = Color( 1, 1, 1, 1 )
@@ -69,6 +69,7 @@ cell_size = Vector2( 32, 32 )
 format = 1
 
 [node name="Player" type="Sprite" parent="."]
+position = Vector2( 320, 160 )
 texture = ExtResource( 7 )
 centered = false
 
@@ -82,7 +83,7 @@ drag_margin_bottom = 0.0
 
 [node name="Overlay" type="CanvasLayer" parent="."]
 
-[node name="MenuBackground" type="ColorRect" parent="Overlay"]
+[node name="Background" type="ColorRect" parent="Overlay"]
 margin_right = 640.0
 margin_bottom = 32.0
 color = Color( 0.0784314, 0.0784314, 0.0784314, 0.705882 )
