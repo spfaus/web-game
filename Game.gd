@@ -98,6 +98,15 @@ func build_level():
 	player_tile = Vector2(player_x, player_y)
 	update_visuals()
 	
+	# Place level end ladder
+	
+	var end_room = rooms.back()
+	var ladder_x = end_room.position.x + 1 + randi() % int(end_room.size.x - 2)
+	var ladder_y = end_room.position.y + 1 + randi() % int(end_room.size.y - 2)
+	set_tile(ladder_x, ladder_y, Tile.Ladder)
+	
+	$Overlay/Level.text = "Level: " + str(level_num)
+	
 func update_visuals():
 	player.position = player_tile * TILE_SIZE
 	
