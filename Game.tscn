@@ -108,3 +108,25 @@ margin_right = 384.0
 margin_bottom = 32.0
 text = "Score:"
 valign = 1
+
+[node name="Win" type="ColorRect" parent="Overlay"]
+visible = false
+margin_right = 640.0
+margin_bottom = 360.0
+color = Color( 0, 0, 0, 0.705882 )
+
+[node name="Label" type="Label" parent="Overlay/Win"]
+margin_left = 160.0
+margin_top = 128.0
+margin_right = 480.0
+margin_bottom = 160.0
+text = "You Win!"
+align = 1
+
+[node name="Button" type="Button" parent="Overlay/Win"]
+margin_left = 256.0
+margin_top = 160.0
+margin_right = 384.0
+margin_bottom = 192.0
+text = "Restart"
+[connection signal="pressed" from="Overlay/Win/Button" to="." method="_on_Button_pressed"]

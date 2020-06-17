@@ -66,6 +66,15 @@ func try_move(dx, dy):
 		Tile.Door:
 			set_tile(x, y, Tile.Floor)
 			
+		Tile.Ladder:
+			level_num += 1
+			score += 20
+			if level_num < LEVEL_SIZES.size():
+				build_level()
+			else:
+				score += 1000
+				$Overlay/Win.visible = true
+			
 	update_visuals()
 	
 func build_level():
@@ -311,3 +320,9 @@ func cut_regions(free_regions, region_to_remove):
 func set_tile(x, y, type):
 	map[x][y] = type
 	tile_map.set_cell(x, y, type)
+
+func _on_Button_pressed():
+	level_num = 0
+	score = 0
+	build_level()
+	$Overlay/Win.visible = false
