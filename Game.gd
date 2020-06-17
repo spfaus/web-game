@@ -38,6 +38,36 @@ func _ready():
 	randomize()
 	build_level()
 	
+func _input(event):
+	if !event.is_pressed():
+		return
+	
+	if event.is_action("Left"):
+		try_move(-1, 0)
+	elif event.is_action("Right"):
+		try_move(1, 0)
+	elif event.is_action("Up"):
+		try_move(0, -1)
+	elif event.is_action("Down"):
+		try_move(0, 1)
+		
+func try_move(dx, dy):
+	var x = player_tile.x + dx
+	var y = player_tile.y + dy
+	
+	var tile_type = Tile.Stone
+	if x >= 0 && x < level_size.x && y >= 0 && y < level_size.y:
+		tile_type = map[x][y]
+		
+	match tile_type:
+		Tile.Floor:
+			player_tile = Vector2(x, y)
+		
+		Tile.Door:
+			set_tile(x, y, Tile.Floor)
+			
+	update_visuals()
+	
 func build_level():
 	# Start with a blank map
 	rooms.clear()
@@ -59,6 +89,17 @@ func build_level():
 			break
 			
 	connect_rooms()
+	
+	# Place player
+	
+	var start_room = rooms.front()
+	var player_x = start_room.position.x + 1 + randi() % int(start_room.size.x - 2)
+	var player_y = start_room.position.y + 1 + randi() % int(start_room.size.y - 2)
+	player_tile = Vector2(player_x, player_y)
+	update_visuals()
+	
+func update_visuals():
+	player.position = player_tile * TILE_SIZE
 	
 func connect_rooms():
 	# Build an A* graph of the area where we can add corridors
