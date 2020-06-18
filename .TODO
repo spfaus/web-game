@@ -1,9 +1,21 @@
-☐ Implement basic game prototype with procedural generation and movement
-☐ Create todo format
-☐ Update README
-☐ Add static typing https://docs.godotengine.org/en/stable/getting_started/scripting/gdscript/static_typing.html
-☐ Look through GDScript documentation
-☐ Evaluate GDScript tooling and plan possible implementation (Example: https://github.com/Scony/godot-gdscript-toolkit)
-☐ Refactor basic game prototype
+New feature or addition:
+    ☐ Implement basic game prototype with procedural generation, movement, combat, and loot
 
-✔ Make functional WebGL build @done(20-06-15 21:26)
+Refactor / Tuning / Polish:
+    ☐ Add static typing https://docs.godotengine.org/en/stable/getting_started/scripting/gdscript/static_typing.html
+    ☐ Refactor basic game prototype
+
+Bugs:
+    ☐ Level starts at 0, should start at 1
+    
+Workflow / Tooling / Meta:
+    ☐ Differentiate between branch for development and branch for live demo
+    ☐ Make GitHub repo public
+    ☐ Upload first demo build and link in GitHub repo
+    ☐ Look through GDScript documentation
+    ☐ Evaluate GDScript tooling and plan possible implementation (Example: https://github.com/Scony/godot-gdscript-toolkit)
+
+Archive:
+    ✔ Create todo format @done(20-06-18 03:06)
+    ✔ Update README @done(20-06-18 02:58)
+    ✔ Make functional WebGL2 build @done(20-06-15 21:26)
