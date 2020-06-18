@@ -1,5 +1,9 @@
 ☐ Implement basic game prototype with procedural generation and movement
 ☐ Create todo format
 ☐ Update README
-☐ Add static typing
+☐ Add static typing https://docs.godotengine.org/en/stable/getting_started/scripting/gdscript/static_typing.html
+☐ Look through GDScript documentation
+☐ Evaluate GDScript tooling and plan possible implementation (Example: https://github.com/Scony/godot-gdscript-toolkit)
+☐ Refactor basic game prototype
+
 ✔ Make functional WebGL build @done(20-06-15 21:26)
