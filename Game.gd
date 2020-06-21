@@ -1,8 +1,8 @@
 extends Node2D
 
-const TILE_SIZE = 32
+const TILE_SIZE := 32
 
-const LEVEL_SIZES = [
+const LEVEL_SIZES := [
 	Vector2(30, 30),
 	Vector2(35, 35),
 	Vector2(40, 40),
@@ -10,35 +10,35 @@ const LEVEL_SIZES = [
 	Vector2(50, 50)
 ]
 
-const LEVEL_ROOM_COUNTS = [5, 7, 9, 12, 15]
-const MIN_ROOM_DIMENSION = 5
-const MAX_ROOM_DIMENSION = 8
+const LEVEL_ROOM_COUNTS := [5, 7, 9, 12, 15]
+const MIN_ROOM_DIMENSION := 5
+const MAX_ROOM_DIMENSION := 8
 
 enum Tile {Stone, Floor, Wall, Door, Ladder}
 
 # Current level ---------------------------------------------
 
-var level_num = 0
-var map = []
-var rooms = []
-var level_size
+var level_num := 0
+var map := []
+var rooms := []
+var level_size: Vector2
 
 # Node refs ---------------------------------------------
 
-onready var tile_map = $TileMap
-onready var player = $Player
+onready var tile_map := $TileMap
+onready var player := $Player
 
 # Game state ---------------------------------------------
 
-var player_tile
-var score = 0
+var player_tile: Vector2
+var score := 0
 
 func _ready():
 	OS.set_window_size(Vector2(1280, 720))
 	randomize()
 	build_level()
 
-func _input(event):
+func _input(event: InputEvent):
 	if !event.is_pressed():
 		return
 
@@ -51,9 +51,9 @@ func _input(event):
 	elif event.is_action("Down"):
 		try_move(0, 1)
 
-func try_move(dx, dy):
-	var x = player_tile.x + dx
-	var y = player_tile.y + dy
+func try_move(dx: int, dy: int):
+	var x := player_tile.x + dx
+	var y := player_tile.y + dy
 
 	var tile_type = Tile.Stone
 	if x >= 0 && x < level_size.x && y >= 0 && y < level_size.y:
@@ -90,7 +90,7 @@ func build_level():
 			map[x].append(Tile.Stone)
 			tile_map.set_cell(x, y, Tile.Stone)
 
-	var free_regions = [Rect2(Vector2(2, 2), level_size - Vector2(4, 4))]
+	var free_regions := [Rect2(Vector2(2, 2), level_size - Vector2(4, 4))]
 	var num_rooms = LEVEL_ROOM_COUNTS[level_num]
 	for i in range(num_rooms):
 		add_room(free_regions)
