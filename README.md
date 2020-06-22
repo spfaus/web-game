@@ -1,4 +1,4 @@
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Simon-A-P/web-game/blob/master/LICENSE) ![Build Production](https://github.com/Simon-A-P/web-game/workflows/Build%20Production/badge.svg?branch=master) ![Mark stale issues and pull requests](https://github.com/Simon-A-P/web-game/workflows/Mark%20stale%20issues%20and%20pull%20requests/badge.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Simon-A-P/web-game/blob/master/LICENSE) ![Mark stale issues and pull requests](https://github.com/Simon-A-P/web-game/workflows/Mark%20stale%20issues%20and%20pull%20requests/badge.svg)
 
 This project is a way for me to have fun while experimenting with some (game / web) technologies.  
 The general goal at the moment is a minimalistic roguelike web-game based in part on WebAssembly.  
