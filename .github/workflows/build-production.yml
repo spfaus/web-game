@@ -30,10 +30,10 @@ jobs:
         # Name of the preset in `export_presets.cfg` to use
         preset: HTML5
         # Optional name of the subdirectory to put exported project in
-        subdirectory: export 
+        #subdirectory:
         # Set true to output an artifact zip file
         package: true
         # Location of Godot project in repository
-        projectDir: /
+        #projectDir:
         # Whether or not to use `--export-debug`
         debugMode: false
