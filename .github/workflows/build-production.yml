@@ -28,7 +28,7 @@ jobs:
         # Name of the exported binary? / Name of the export?
         name: index.html
         # Name of the preset in `export_presets.cfg` to use
-        preset: preset.0
+        preset: 0
         # Optional name of the subdirectory to put exported project in
         #subdirectory:
         # Set true to output an artifact zip file
