@@ -26,6 +26,7 @@ var level_size: Vector2
 # Node refs ---------------------------------------------
 
 onready var tile_map := $TileMap
+onready var visibility_map := $VisibilityMap
 onready var player := $Player
 
 # Game state ---------------------------------------------
@@ -33,12 +34,12 @@ onready var player := $Player
 var player_tile: Vector2
 var score := 0
 
-func _ready():
+func _ready() -> void:
 	OS.set_window_size(Vector2(1280, 720))
 	randomize()
 	build_level()
 
-func _input(event: InputEvent):
+func _input(event: InputEvent) -> void:
 	if !event.is_pressed():
 		return
 
@@ -51,7 +52,7 @@ func _input(event: InputEvent):
 	elif event.is_action("Down"):
 		try_move(0, 1)
 
-func try_move(dx: int, dy: int):
+func try_move(dx: int, dy: int) -> void:
 	var x := player_tile.x + dx
 	var y := player_tile.y + dy
 
@@ -75,9 +76,9 @@ func try_move(dx: int, dy: int):
 				score += 1000
 				$Overlay/Win.visible = true
 
-	update_visuals()
+	call_deferred("update_visuals")
 
-func build_level():
+func build_level() -> void:
 	# Start with a blank map
 	rooms.clear()
 	map.clear()
@@ -89,6 +90,7 @@ func build_level():
 		for y in range(level_size.y):
 			map[x].append(Tile.Stone)
 			tile_map.set_cell(x, y, Tile.Stone)
+			visibility_map.set_cell(x, y, 0)
 
 	var free_regions := [Rect2(Vector2(2, 2), level_size - Vector2(4, 4))]
 	var num_rooms = LEVEL_ROOM_COUNTS[level_num]
@@ -105,7 +107,7 @@ func build_level():
 	var player_x = start_room.position.x + 1 + randi() % int(start_room.size.x - 2)
 	var player_y = start_room.position.y + 1 + randi() % int(start_room.size.y - 2)
 	player_tile = Vector2(player_x, player_y)
-	update_visuals()
+	call_deferred("update_visuals")
 
 	# Place level end ladder
 
@@ -116,10 +118,26 @@ func build_level():
 
 	$Overlay/Level.text = "Level: " + str(level_num)
 
-func update_visuals():
+func update_visuals() -> void:
 	player.position = player_tile * TILE_SIZE
+	var player_center := tile_to_pixel_center(player_tile.x, player_tile.y)
+	var space_state = get_world_2d().direct_space_state
+	for x in range(level_size.x):
+		for y in range(level_size.y):
+			if visibility_map.get_cell(x, y) == 0:
+				# Check if closest corner to player is visible
+				var x_dir = 1 if x < player_tile.x else -1
+				var y_dir = 1 if y < player_tile.y else -1
+				var test_point = tile_to_pixel_center(x, y) + Vector2(x_dir, y_dir) * TILE_SIZE / 2
 
-func connect_rooms():
+				var occlusion = space_state.intersect_ray(player_center, test_point)
+				if !occlusion || (occlusion.position - test_point).length() < 1: # If not occluded or "minimally occluded" (rounding errors)
+					visibility_map.set_cell(x, y, -1)
+
+func tile_to_pixel_center(x, y) -> Vector2:
+	return Vector2((x+ 0.5) * TILE_SIZE, (y + 0.5) * TILE_SIZE)
+
+func connect_rooms() -> void:
 	# Build an A* graph of the area where we can add corridors
 
 	var stone_graph = AStar.new()
@@ -155,7 +173,7 @@ func connect_rooms():
 	while !is_everything_connected(room_graph):
 		add_random_connection(stone_graph, room_graph)
 
-func is_everything_connected(graph):
+func is_everything_connected(graph) -> bool:
 	var points = graph.get_points()
 	var start = points.pop_back()
 	for point in points:
@@ -165,7 +183,7 @@ func is_everything_connected(graph):
 
 	return true
 
-func add_random_connection(stone_graph, room_graph):
+func add_random_connection(stone_graph, room_graph) -> void:
 	# Pick rooms to connect
 
 	var start_room_id = get_least_connected_point(room_graph)
@@ -194,7 +212,7 @@ func add_random_connection(stone_graph, room_graph):
 
 	room_graph.connect_points(start_room_id, end_room_id)
 
-func get_least_connected_point(graph):
+func get_least_connected_point(graph) -> Array:
 	var point_ids = graph.get_points()
 
 	var least
@@ -210,7 +228,7 @@ func get_least_connected_point(graph):
 
 	return tied_for_least[randi() % tied_for_least.size()]
 
-func get_nearest_unconnected_point(graph, target_point):
+func get_nearest_unconnected_point(graph, target_point) -> Array:
 	var target_position = graph.get_point_position(target_point)
 	var point_ids = graph.get_points()
 
@@ -234,7 +252,7 @@ func get_nearest_unconnected_point(graph, target_point):
 
 	return tied_for_nearest[randi() % tied_for_nearest.size()]
 
-func pick_random_door_location(room):
+func pick_random_door_location(room) -> Array:
 	var options = []
 
 	# Top and bottom walls
@@ -251,7 +269,7 @@ func pick_random_door_location(room):
 
 	return options[randi() % options.size()]
 
-func add_room(free_regions):
+func add_room(free_regions) -> void:
 	var region = free_regions[randi() % free_regions.size()]
 
 	var size_x = MIN_ROOM_DIMENSION
@@ -289,7 +307,7 @@ func add_room(free_regions):
 
 	cut_regions(free_regions, room)
 
-func cut_regions(free_regions, region_to_remove):
+func cut_regions(free_regions, region_to_remove) -> void:
 	var removal_queue = []
 	var addition_queue = []
 
@@ -317,11 +335,11 @@ func cut_regions(free_regions, region_to_remove):
 	for region in addition_queue:
 		free_regions.append(region)
 
-func set_tile(x, y, type):
+func set_tile(x, y, type) -> void:
 	map[x][y] = type
 	tile_map.set_cell(x, y, type)
 
-func _on_Button_pressed():
+func _on_Button_pressed() -> void:
 	level_num = 0
 	score = 0
 	build_level()
