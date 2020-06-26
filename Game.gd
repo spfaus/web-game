@@ -11,10 +11,43 @@ const LEVEL_SIZES := [
 ]
 
 const LEVEL_ROOM_COUNTS := [5, 7, 9, 12, 15]
+const LEVEL_ENEMY_COUNTS := [5, 8, 12, 18, 26]
 const MIN_ROOM_DIMENSION := 5
 const MAX_ROOM_DIMENSION := 8
 
 enum Tile {Stone, Floor, Wall, Door, Ladder}
+
+const EnemyScene = preload("res://Enemy.tscn")
+
+class Enemy extends Reference:
+	var sprite_node: Node2D
+	var tile : Vector2
+	var full_hp: int
+	var hp: int
+	var dead := false
+
+	func _init(game, enemy_level, x, y):
+		full_hp = 1 + enemy_level * 2
+		hp = full_hp
+		tile = Vector2(x, y)
+		sprite_node = EnemyScene.instance()
+		sprite_node.frame = enemy_level
+		sprite_node.position = tile * TILE_SIZE
+		game.add_child(sprite_node)
+
+	func remove():
+		sprite_node.queue_free()
+
+	func take_damage(game, dmg):
+		if dead:
+			return
+
+		hp = max(0, hp - dmg)
+		sprite_node.get_node("HPBar").rect_size.x = TILE_SIZE * hp / full_hp
+
+		if hp == 0:
+			dead = true
+			game.score += 10 * full_hp
 
 # Current level ---------------------------------------------
 
@@ -22,6 +55,7 @@ var level_num := 0
 var map := []
 var rooms := []
 var level_size: Vector2
+var enemies := []
 
 # Node refs ---------------------------------------------
 
@@ -62,7 +96,18 @@ func try_move(dx: int, dy: int) -> void:
 
 	match tile_type:
 		Tile.Floor:
-			player_tile = Vector2(x, y)
+			var blocked = false
+			for enemy in enemies:
+				if enemy.tile.x == x && enemy.tile.y == y:
+					enemy.take_damage(self, 1)
+					if enemy.dead:
+						enemy.remove()
+						enemies.erase(enemy)
+					blocked = true
+					break
+
+			if !blocked:
+				player_tile = Vector2(x, y)
 
 		Tile.Door:
 			set_tile(x, y, Tile.Floor)
@@ -84,6 +129,10 @@ func build_level() -> void:
 	map.clear()
 	tile_map.clear()
 
+	for enemy in enemies:
+		enemy.remove()
+	enemies.clear()
+
 	level_size = LEVEL_SIZES[level_num]
 	for x in range(level_size.x):
 		map.append([])
@@ -93,7 +142,7 @@ func build_level() -> void:
 			visibility_map.set_cell(x, y, 0)
 
 	var free_regions := [Rect2(Vector2(2, 2), level_size - Vector2(4, 4))]
-	var num_rooms = LEVEL_ROOM_COUNTS[level_num]
+	var num_rooms: int = LEVEL_ROOM_COUNTS[level_num]
 	for i in range(num_rooms):
 		add_room(free_regions)
 		if free_regions.empty():
@@ -103,10 +152,29 @@ func build_level() -> void:
 
 	# Place player
 
-	var start_room = rooms.front()
-	var player_x = start_room.position.x + 1 + randi() % int(start_room.size.x - 2)
-	var player_y = start_room.position.y + 1 + randi() % int(start_room.size.y - 2)
+	var start_room: Rect2 = rooms.front()
+	var player_x := start_room.position.x + 1 + randi() % int(start_room.size.x - 2)
+	var player_y := start_room.position.y + 1 + randi() % int(start_room.size.y - 2)
 	player_tile = Vector2(player_x, player_y)
+
+	# Place enemies
+
+	var num_enemies: int = LEVEL_ENEMY_COUNTS[level_num]
+	for i in range(num_enemies):
+		var room: Rect2 = rooms[1 + randi() % (rooms.size() - 1)]
+		var x := room.position.x + 1 + randi() % int(room.size.x - 2)
+		var y := room.position.y + 1 + randi() % int(room.size.y - 2)
+
+		var blocked := false
+		for enemy in enemies:
+			if enemy.tile.x == x && enemy.tile.y == y:
+				blocked = true
+				break
+
+		if !blocked:
+			var enemy = Enemy.new(self, randi() % 2, x, y)
+			enemies.append(enemy)
+
 	call_deferred("update_visuals")
 
 	# Place level end ladder
@@ -133,6 +201,8 @@ func update_visuals() -> void:
 				var occlusion = space_state.intersect_ray(player_center, test_point)
 				if !occlusion || (occlusion.position - test_point).length() < 1: # If not occluded or "minimally occluded" (rounding errors)
 					visibility_map.set_cell(x, y, -1)
+
+	$Overlay/Score.text = "Score: " + str(score)
 
 func tile_to_pixel_center(x, y) -> Vector2:
 	return Vector2((x+ 0.5) * TILE_SIZE, (y + 0.5) * TILE_SIZE)
