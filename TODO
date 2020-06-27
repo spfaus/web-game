@@ -1,15 +1,20 @@
 ---- MVP ----
-	Implement combat
 	Make enemies not visible when in fog of war
 	Implement loot
 	Improve graphics
+	Do playtesting / tuning
 
 ---- BACKLOG ----
 	Make game playable on mobile devices
 	Change level 0 to level 1
 	Refactor code (static typing, ...)
+	Fix enemy spawning on ladder
+	Fix ladder being traversable (by enemies)
 
 ---- DONE ----
-
+	Implement combat
+		Implement enemy pathfinding
+		Implement player HP
+		Implement enemy attacks
 
 ---- CANCELLED ----

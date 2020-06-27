@@ -14,6 +14,7 @@ const LEVEL_ROOM_COUNTS := [5, 7, 9, 12, 15]
 const LEVEL_ENEMY_COUNTS := [5, 8, 12, 18, 26]
 const MIN_ROOM_DIMENSION := 5
 const MAX_ROOM_DIMENSION := 8
+const PLAYER_START_HP := 5
 
 enum Tile {Stone, Floor, Wall, Door, Ladder}
 
@@ -49,6 +50,26 @@ class Enemy extends Reference:
 			dead = true
 			game.score += 10 * full_hp
 
+	func act(game):
+		var my_point = game.enemy_pathfinding.get_closest_point(Vector3(tile.x, tile.y, 0))
+		var player_point = game.enemy_pathfinding.get_closest_point(Vector3(game.player_tile.x, game.player_tile.y, 0))
+		var path = game.enemy_pathfinding.get_point_path(my_point, player_point)
+		if path:
+			assert(path.size() > 1)
+			var move_tile = Vector2(path[1].x, path[1].y)
+
+			if move_tile == game.player_tile:
+				game.damage_player(1)
+			else:
+				var blocked = false
+				for enemy in game.enemies:
+					if enemy.tile == move_tile:
+						blocked = true
+						break
+
+				if !blocked:
+					tile = move_tile
+
 # Current level ---------------------------------------------
 
 var level_num := 0
@@ -67,6 +88,8 @@ onready var player := $Player
 
 var player_tile: Vector2
 var score := 0
+var enemy_pathfinding: AStar
+var player_hp := PLAYER_START_HP
 
 func _ready() -> void:
 	OS.set_window_size(Vector2(1280, 720))
@@ -121,6 +144,9 @@ func try_move(dx: int, dy: int) -> void:
 				score += 1000
 				$Overlay/Win.visible = true
 
+	for enemy in enemies:
+		enemy.act(self)
+
 	call_deferred("update_visuals")
 
 func build_level() -> void:
@@ -132,6 +158,8 @@ func build_level() -> void:
 	for enemy in enemies:
 		enemy.remove()
 	enemies.clear()
+
+	enemy_pathfinding = AStar.new()
 
 	level_size = LEVEL_SIZES[level_num]
 	for x in range(level_size.x):
@@ -186,6 +214,23 @@ func build_level() -> void:
 
 	$Overlay/Level.text = "Level: " + str(level_num)
 
+func clear_path(tile) -> void:
+	var new_point = enemy_pathfinding.get_available_point_id()
+	enemy_pathfinding.add_point(new_point, Vector3(tile.x, tile.y, 0))
+	var points_to_connect := []
+
+	if tile.x > 0 && map[tile.x - 1][tile.y] == Tile.Floor:
+		points_to_connect.append(enemy_pathfinding.get_closest_point(Vector3(tile.x - 1, tile.y, 0)))
+	if tile.y > 0 && map[tile.x][tile.y - 1] == Tile.Floor:
+		points_to_connect.append(enemy_pathfinding.get_closest_point(Vector3(tile.x, tile.y - 1, 0)))
+	if tile.x < level_size.x - 1 && map[tile.x + 1][tile.y] == Tile.Floor:
+		points_to_connect.append(enemy_pathfinding.get_closest_point(Vector3(tile.x + 1, tile.y, 0)))
+	if tile.y < level_size.y - 1 && map[tile.x][tile.y + 1] == Tile.Floor:
+		points_to_connect.append(enemy_pathfinding.get_closest_point(Vector3(tile.x, tile.y + 1, 0)))
+
+	for point in points_to_connect:
+		enemy_pathfinding.connect_points(point, new_point)
+
 func update_visuals() -> void:
 	player.position = player_tile * TILE_SIZE
 	var player_center := tile_to_pixel_center(player_tile.x, player_tile.y)
@@ -202,6 +247,10 @@ func update_visuals() -> void:
 				if !occlusion || (occlusion.position - test_point).length() < 1: # If not occluded or "minimally occluded" (rounding errors)
 					visibility_map.set_cell(x, y, -1)
 
+	for enemy in enemies:
+		enemy.sprite_node.position = enemy.tile * TILE_SIZE
+
+	$Overlay/HP.text = "HP: " + str(player_hp)
 	$Overlay/Score.text = "Score: " + str(score)
 
 func tile_to_pixel_center(x, y) -> Vector2:
@@ -409,8 +458,18 @@ func set_tile(x, y, type) -> void:
 	map[x][y] = type
 	tile_map.set_cell(x, y, type)
 
+	if type == Tile.Floor:
+		clear_path(Vector2(x, y))
+
+func damage_player(dmg):
+	player_hp = max(0, player_hp - dmg)
+	if player_hp == 0:
+		$Overlay/Lose.visible = true
+
 func _on_Button_pressed() -> void:
 	level_num = 0
 	score = 0
 	build_level()
 	$Overlay/Win.visible = false
+	$Overlay/Lose.visible = false
+	player_hp = PLAYER_START_HP
