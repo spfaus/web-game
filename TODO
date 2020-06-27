@@ -1,0 +1,15 @@
+---- MVP ----
+	Implement combat
+	Make enemies not visible when in fog of war
+	Implement loot
+	Improve graphics
+
+---- BACKLOG ----
+	Make game playable on mobile devices
+	Change level 0 to level 1
+	Refactor code (static typing, ...)
+
+---- DONE ----
+
+
+---- CANCELLED ----
