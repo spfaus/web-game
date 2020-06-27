@@ -10,6 +10,7 @@
 	Refactor code (static typing, ...)
 	Fix enemy spawning on ladder
 	Fix ladder being traversable (by enemies)
+	Block player inputs when Win / Lose overlay is visible
 
 ---- DONE ----
 	Implement combat
