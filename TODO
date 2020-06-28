@@ -1,6 +1,11 @@
 ---- MVP ----
 	Make enemies not visible when in fog of war
+	Make enemies not chase player if they don't see the player
 	Implement loot
+		Potions and status effects
+			Healing
+			Poisoned
+			Limited visibility
 	Improve graphics
 	Do playtesting / tuning
 
