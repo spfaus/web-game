@@ -51,6 +51,9 @@ class Enemy extends Reference:
 			game.score += 10 * full_hp
 
 	func act(game):
+		if !sprite_node.visible:
+			return
+
 		var my_point = game.enemy_pathfinding.get_closest_point(Vector3(tile.x, tile.y, 0))
 		var player_point = game.enemy_pathfinding.get_closest_point(Vector3(game.player_tile.x, game.player_tile.y, 0))
 		var path = game.enemy_pathfinding.get_point_path(my_point, player_point)
@@ -249,6 +252,11 @@ func update_visuals() -> void:
 
 	for enemy in enemies:
 		enemy.sprite_node.position = enemy.tile * TILE_SIZE
+		if !enemy.sprite_node.visible:
+			var enemy_center = tile_to_pixel_center(enemy.tile.x, enemy.tile.y)
+			var occlusion = space_state.intersect_ray(player_center, enemy_center)
+			if !occlusion:
+				enemy.sprite_node.visible = true
 
 	$Overlay/HP.text = "HP: " + str(player_hp)
 	$Overlay/Score.text = "Score: " + str(score)

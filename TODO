@@ -1,6 +1,4 @@
 ---- MVP ----
-	Make enemies not visible when in fog of war
-	Make enemies not chase player if they don't see the player
 	Implement loot
 		Potions and status effects
 			Healing
@@ -16,8 +14,11 @@
 	Fix enemy spawning on ladder
 	Fix ladder being traversable (by enemies)
 	Block player inputs when Win / Lose overlay is visible
+	Fix enemies staying visible when entering undiscovered tile
 
 ---- DONE ----
+	Make enemies not visible when in fog of war
+	Make enemies not chase player if they don't see the player
 	Implement combat
 		Implement enemy pathfinding
 		Implement player HP
