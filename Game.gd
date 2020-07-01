@@ -14,7 +14,7 @@ const LEVEL_ROOM_COUNTS := [5, 7, 9, 12, 15]
 const LEVEL_ENEMY_COUNTS := [5, 8, 12, 18, 26]
 const MIN_ROOM_DIMENSION := 5
 const MAX_ROOM_DIMENSION := 8
-const PLAYER_START_HP := 5
+const PLAYER_START_HP := 20
 
 enum Tile {Stone, Floor, Wall, Door, Ladder}
 
