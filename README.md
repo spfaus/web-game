@@ -8,4 +8,5 @@ As this game is based on [WebGL 2.0](https://caniuse.com/#feat=webgl2) and [WebA
 
 ## Controls
 (Work in progress)  
+If the controls do not work, click on the canvas to make sure it is in focus!  
 Arrow keys for player movement  
